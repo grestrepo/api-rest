@@ -1,7 +1,8 @@
 import express, { Application } from 'express';
+import cors from 'cors';
 
 import {userRouter} from './users/routes/user.router';
-import {productRouter} from './products/routes/product.router';
+import {productRouter} from './products/routes';
 
 interface Path {
   users: string;
@@ -10,7 +11,7 @@ interface Path {
 
 export class Server {
 
-  app: Application;
+  private app: Application;
   path: Path;
   port: string;
 
@@ -24,10 +25,14 @@ export class Server {
 
     this.middlewares();
     this.routes();
-    this.listen();
+  }
+
+  get getApp(){
+    return this.app;
   }
 
   private middlewares(){
+    this.app.use(cors({origin: true}));
     this.app.use(express.json());
   }
 
@@ -36,10 +41,9 @@ export class Server {
     this.app.use(this.path.products, productRouter);
   }
 
-  private listen(){
+  listen(){
     this.app.listen(this.port, () => {
       console.log('Escuchando puerto: ', this.port);
     });
   }
-
 }
