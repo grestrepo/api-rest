@@ -8,8 +8,8 @@ const api = supertest(app);
 
 describe('Test en la ruta de productos', () => {
   test('Test en la ruta /products/', async () => {
-    await api.get('/api/v1/products/')
-    .expect(200)
-    .expect('Content-Type', /application\/json/);
+    const result = await api.get('/api/v1/products/');
+
+    expect(result.body.productos).toHaveLength(100);
   });
 });

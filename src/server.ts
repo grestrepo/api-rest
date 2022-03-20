@@ -1,6 +1,7 @@
 import express, { Application } from 'express';
 import cors from 'cors';
 
+import {connection} from './core/config/db-connection';
 import {userRouter} from './users/routes/user.router';
 import {productRouter} from './products/routes';
 
@@ -23,6 +24,7 @@ export class Server {
       products: '/api/v1/products'
     };
 
+    this.dbConnection();
     this.middlewares();
     this.routes();
   }
@@ -39,6 +41,15 @@ export class Server {
   private routes(){
     this.app.use(this.path.users, userRouter);
     this.app.use(this.path.products, productRouter);
+  }
+
+  private dbConnection(){
+    connection.then(() => {
+      console.log('Se realizó la conexión');
+    })
+    .catch(err => {
+      console.log('Ocurrió un error en la conexión de base de datos');
+    });
   }
 
   listen(){

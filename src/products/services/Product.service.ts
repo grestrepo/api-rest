@@ -1,30 +1,21 @@
-import faker from 'faker';
-import {Product} from '../interfaces';
+import {Product} from '../entities/Product.entity';
+
 
 export class ProductService {
-  private products: Product[] = [];
-  constructor(){
-    this.generate();
+
+  async findProducts(): Promise<Product[]> {
+    const products = await Product.find();
+
+    return products;
   }
 
-  private generate(){
-    const limit = 100;
-    for (let index = 0; index < limit; index++) {
-      this.products.push({
-        id: faker.datatype.uuid(),
-        name: faker.commerce.productName(),
-        price: parseInt(faker.commerce.price(), 10),
-        image: faker.image.imageUrl()
-      });
-    }
-  }
+  async createProduct(data: any): Promise<Product[]>{
+    const product = Product.create({
+      ...data
+    });
 
-  findProducts(): Product[]{
-    return this.products;
-  }
+    const saved = Product.save(product);
 
-  findProduct(id: string): Product | undefined {
-    const product = this.products.find(item => item.id === id);
-    return product;
+    return saved;
   }
 }

@@ -12,14 +12,21 @@
     "test": "jest",
     "test:watch": "jest --watchAll --verbose"
   },
-  "keywords": ["Api", "Rest", "PostgreSQL"],
+  "keywords": [
+    "Api",
+    "Rest",
+    "PostgreSQL"
+  ],
   "author": "Gustavo Restrepo",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
-    "faker": "5.5.3"
+    "faker": "5.5.3",
+    "pg": "^8.7.3",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
