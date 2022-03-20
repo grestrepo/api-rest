@@ -9,6 +9,16 @@ export class ProductService {
     return products;
   }
 
+  async findProduct(id: number): Promise<Product | null> {
+    const product = await Product.findOne({
+      where: {
+        id
+      }
+    });
+
+    return product;
+  }
+
   async createProduct(data: any): Promise<Product[]>{
     const product = Product.create({
       ...data
@@ -17,5 +27,20 @@ export class ProductService {
     const saved = Product.save(product);
 
     return saved;
+  }
+
+  async updateProduct(id: number, changes: any) {
+    const product = await this.findProduct(id);
+
+    if(!product){
+      return null;
+    }
+
+    const updateProduct: Product = {
+      ...product,
+      ...changes
+    };
+
+    return await Product.save(updateProduct);
   }
 }

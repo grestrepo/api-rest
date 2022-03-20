@@ -10,22 +10,22 @@ export const getProducts = async (req: Request, res: Response) => {
   res.status(200).json({ok: true, productos});
 };
 
-// export const getProduct = (req: Request, res: Response) => {
-//   const {id} = req.params;
-//   const product = productService.findProduct(id);
+export const getProduct = async (req: Request, res: Response) => {
+  const {id} = req.params;
+  const product = await productService.findProduct(Number(id));
 
-//   if(!product){
-//     res.status(400).json({
-//       ok: false,
-//       message: `No encontró ningún producto con el id: ${id}`
-//     });
-//   }
+  if(!product){
+    res.status(400).json({
+      ok: false,
+      message: `No encontró ningún producto con el id: ${id}`
+    });
+  }
 
-//   res.status(200).json({
-//     ok: true,
-//     product
-//   });
-// };
+  res.status(200).json({
+    ok: true,
+    product
+  });
+};
 
 
 export const createProduct = async (req: Request, res: Response) => {
@@ -38,14 +38,21 @@ export const createProduct = async (req: Request, res: Response) => {
   });
 };
 
-// export const updateProduct = (req: Request, res: Response) => {
-//   const {id} = req.params;
-//   const changes = req.body;
+export const updateProduct = async (req: Request, res: Response) => {
+  const {id} = req.params;
+  const changes = req.body;
 
-//   const product: Product = productService.updateProduct(id, changes);
+  const product = await productService.updateProduct(Number(id), changes);
 
-//   res.status(200).json({
-//     ok: true,
-//     product
-//   });
-// };
+  if(!product){
+    res.status(400).json({
+      ok: false,
+      message: 'No se pudo actualizar ningún producto'
+    });
+  }
+
+  res.status(200).json({
+    ok: true,
+    product
+  });
+};

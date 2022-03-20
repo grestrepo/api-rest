@@ -3,8 +3,10 @@ import {Column, Entity, BaseEntity, PrimaryGeneratedColumn} from 'typeorm';
 @Entity()
 export class Product extends BaseEntity {
 
-  @PrimaryGeneratedColumn()
-  id: string;
+  @PrimaryGeneratedColumn({
+    type: 'int'
+  })
+  id: number;
 
   @Column({
     type: 'varchar',
