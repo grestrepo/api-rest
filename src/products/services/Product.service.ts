@@ -21,7 +21,8 @@ export class ProductService {
 
   async createProduct(data: any): Promise<Product[]>{
     const product = Product.create({
-      ...data
+      ...data,
+      createdAt: new Date()
     });
 
     const saved = Product.save(product);

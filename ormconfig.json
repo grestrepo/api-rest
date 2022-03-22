@@ -1,6 +1,9 @@
 {
   "type": "postgres",
   "database": "test",
-  "entities": ["./src/products/entities/*.entity.ts"],
+  "entities": [
+    "./src/products/entities/*.entity.ts",
+    "./src/users/entities/*.entity.ts"
+  ],
   "migrations": ["./migrations/*.ts"]
 }

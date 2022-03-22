@@ -1,1 +1,1 @@
-export type IProperty = 'body' | 'query' | 'param';
+export type IProperty = 'body' | 'query' | 'params';

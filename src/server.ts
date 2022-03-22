@@ -2,7 +2,7 @@ import express, { Application } from 'express';
 import cors from 'cors';
 
 import {connection} from './core/config/db-connection';
-import {userRouter} from './users/routes/user.router';
+import {userRouter} from './users/routes';
 import {productRouter} from './products/routes';
 
 interface Path {

@@ -1,6 +1,8 @@
 import {Column, Entity, BaseEntity, PrimaryGeneratedColumn} from 'typeorm';
 
-@Entity()
+@Entity({
+  name: 'products'
+})
 export class Product extends BaseEntity {
 
   @PrimaryGeneratedColumn({
@@ -26,4 +28,10 @@ export class Product extends BaseEntity {
     length: 100
   })
   image: string;
+
+  @Column({
+    type: 'date',
+    name: 'created_at'
+  })
+  createdAt: Date;
 }

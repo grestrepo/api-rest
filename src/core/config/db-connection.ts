@@ -12,9 +12,10 @@ export const connection = createConnection({
     password: config.dbPassword,
     database: config.dbName,
     entities: [
-      path.resolve(__dirname, '../../products/entities/**/*.js')
+      path.resolve(__dirname, '../../products/entities/**/*.js'),
+      path.resolve(__dirname, '../../users/entities/**/*.js')
     ],
     migrations: [/*...*/],
     migrationsTableName: "custom_migration_table",
-    synchronize: false
+    synchronize: true
 });
