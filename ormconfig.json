@@ -1,0 +1,6 @@
+{
+  "type": "postgres",
+  "database": "test",
+  "entities": ["./src/products/entities/*.entity.ts"],
+  "migrations": ["./migrations/*.ts"]
+}

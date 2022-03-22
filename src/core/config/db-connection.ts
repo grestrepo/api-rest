@@ -2,17 +2,19 @@ import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import path from 'path';
 
-console.log(path.resolve(__dirname, '../../products/entities/**/*.js'));
+import {config} from './config';
 
 export const connection = createConnection({
     type: 'postgres',
-    host: 'localhost',
+    host: config.host,
     port: 5432,
-    username: 'postgres',
-    password: 'tavo1798',
-    database: 'test',
+    username: config.dbUser,
+    password: config.dbPassword,
+    database: config.dbName,
     entities: [
       path.resolve(__dirname, '../../products/entities/**/*.js')
     ],
-    synchronize: true,
+    migrations: [/*...*/],
+    migrationsTableName: "custom_migration_table",
+    synchronize: false
 });
