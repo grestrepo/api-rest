@@ -20,10 +20,23 @@ export const getUsers = async (req: Request, res: Response) => {
   });
 };
 
-export const getUser = (req: Request, res: Response) => {
-  res.json({
-    nombre: 'Gustavo'
+export const getUser = async (req: Request, res: Response) => {
+  const {id} = req.params;
+
+  const user = await userService.findUser(Number(id));
+
+  if(!user){
+    return res.status(404).json({
+      ok: false,
+      message: 'Usuario no encontrado'
+    });
+  }
+
+  return res.status(200).json({
+    ok: true,
+    user
   });
+
 };
 
 export const createUser = async (req: Request, res: Response) => {

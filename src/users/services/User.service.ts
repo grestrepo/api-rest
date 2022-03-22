@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {User} from '../entities/User.entity';
 
 export class UserService {
